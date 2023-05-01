@@ -130,7 +130,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     autofocus: true,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: '   Driver ID ...',
+                                      hintText: '   Email ...',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodySmall,
                                       enabledBorder: UnderlineInputBorder(
@@ -211,7 +211,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ConfirmWidget(driverID: _model.textController.text.trim(),),
+                                      builder: (context) => ConfirmWidget(email: _model.textController.text.trim(),),
                                     ),
                                   );
                                 },

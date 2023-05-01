@@ -13,6 +13,8 @@ class ConfirmModel extends FlutterFlowModel {
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
   TextEditingController? textControllerDriverID;
+  late bool VisibilityControllerDriverID;
+
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
   TextEditingController? textControllerPassword;
@@ -27,6 +29,7 @@ class ConfirmModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     passwordVisibility1 = false;
+    VisibilityControllerDriverID = false;
     passwordVisibility2 = false;
   }
 

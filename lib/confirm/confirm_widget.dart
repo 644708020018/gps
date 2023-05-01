@@ -12,9 +12,9 @@ import 'confirm_model.dart';
 export 'confirm_model.dart';
 
 class ConfirmWidget extends StatefulWidget {
-  String driverID;
+  String email;
 
-  ConfirmWidget({Key? key, required this.driverID}) : super(key: key);
+  ConfirmWidget({Key? key, required this.email}) : super(key: key);
 
   @override
   _ConfirmWidgetState createState() => _ConfirmWidgetState();
@@ -31,6 +31,7 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
     super.initState();
     _model = createModel(context, () => ConfirmModel());
 
+    _model.textControllerDriverID ??= TextEditingController();
     _model.textControllerPassword ??= TextEditingController();
     _model.textControllerConfirmPassword ??= TextEditingController();
   }
@@ -108,11 +109,70 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
                                   width: 320.0,
                                   decoration: BoxDecoration(),
                                   child:
-                                      Text('Driver ID : ${widget.driverID}')),
+                                      Text('Email : ${widget.email}')),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 20.0, 24.0, 0.0),
+                              child: Container(
+                                width: 320.0,
+                                decoration: BoxDecoration(),
+                                child: TextFormField(
+                                  controller: _model.textControllerDriverID,
+                                  decoration: InputDecoration(
+                                    hintText: 'DriverID',
+                                    hintStyle:
+                                    FlutterFlowTheme.of(context).bodySmall,
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    errorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    focusedErrorBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x00000000),
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(4.0),
+                                        topRight: Radius.circular(4.0),
+                                      ),
+                                    ),
+                                    filled: true,
+                                    fillColor:
+                                    FlutterFlowTheme.of(context).lineColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 10.0, 24.0, 0.0),
                               child: Container(
                                 width: 320.0,
                                 decoration: BoxDecoration(),
@@ -286,7 +346,8 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
                                   0.0, 40.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  String username = widget.driverID;
+                                  String username = widget.email;
+                                  String driverId = _model.textControllerDriverID.text.trim();
                                   String Password =
                                       _model.textControllerPassword.text.trim();
                                   String ConfirmPassword = _model
