@@ -63,7 +63,7 @@ class _LoginWidgetState extends State<LoginWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
+        body: SingleChildScrollView(
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
@@ -211,7 +211,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => ConfirmWidget(),
+                                      builder: (context) => ConfirmWidget(driverID: _model.textController.text.trim(),),
                                     ),
                                   );
                                 },

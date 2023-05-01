@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -10,7 +12,9 @@ import 'confirm_model.dart';
 export 'confirm_model.dart';
 
 class ConfirmWidget extends StatefulWidget {
-  const ConfirmWidget({Key? key}) : super(key: key);
+  String driverID;
+
+  ConfirmWidget({Key? key, required this.driverID}) : super(key: key);
 
   @override
   _ConfirmWidgetState createState() => _ConfirmWidgetState();
@@ -27,9 +31,8 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
     super.initState();
     _model = createModel(context, () => ConfirmModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textController2 ??= TextEditingController();
-    _model.textController3 ??= TextEditingController();
+    _model.textControllerPassword ??= TextEditingController();
+    _model.textControllerConfirmPassword ??= TextEditingController();
   }
 
   @override
@@ -47,7 +50,7 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
+        body: SingleChildScrollView(
           child: Form(
             key: _model.formKey,
             autovalidateMode: AutovalidateMode.disabled,
@@ -100,72 +103,12 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
+                            Center(
                               child: Container(
-                                width: 320.0,
-                                decoration: BoxDecoration(),
-                                child: TextFormField(
-                                  controller: _model.textController1,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    hintText: 'Driver ID',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodySmall,
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x00000000),
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    errorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                    focusedErrorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.black,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(4.0),
-                                        topRight: Radius.circular(4.0),
-                                      ),
-                                    ),
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                  textAlign: TextAlign.center,
-                                  validator: _model.textController1Validator
-                                      .asValidator(context),
-                                ),
-                              ),
+                                  width: 320.0,
+                                  decoration: BoxDecoration(),
+                                  child:
+                                      Text('Driver ID : ${widget.driverID}')),
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
@@ -174,7 +117,7 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
                                 width: 320.0,
                                 decoration: BoxDecoration(),
                                 child: TextFormField(
-                                  controller: _model.textController2,
+                                  controller: _model.textControllerPassword,
                                   autofocus: true,
                                   obscureText: !_model.passwordVisibility1,
                                   decoration: InputDecoration(
@@ -259,7 +202,8 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
                                 width: 320.0,
                                 decoration: BoxDecoration(),
                                 child: TextFormField(
-                                  controller: _model.textController3,
+                                  controller:
+                                      _model.textControllerConfirmPassword,
                                   autofocus: true,
                                   obscureText: !_model.passwordVisibility2,
                                   decoration: InputDecoration(
@@ -342,16 +286,40 @@ class _ConfirmWidgetState extends State<ConfirmWidget> {
                                   0.0, 40.0, 0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await Navigator.push(
-                                    context,
-                                    PageTransition(
-                                      type: PageTransitionType.leftToRight,
-                                      duration: Duration(milliseconds: 300),
-                                      reverseDuration:
-                                          Duration(milliseconds: 300),
-                                      child: HomeWidget(),
-                                    ),
-                                  );
+                                  String username = widget.driverID;
+                                  String Password =
+                                      _model.textControllerPassword.text.trim();
+                                  String ConfirmPassword = _model
+                                      .textControllerConfirmPassword.text
+                                      .trim();
+                                  if (Password == ConfirmPassword) {
+                                    print("USER : " + username);
+                                    print("Password : " + Password);
+                                    print("Confirm : " + ConfirmPassword);
+                                    try {
+                                     await FirebaseAuth.instance
+                                          .createUserWithEmailAndPassword(
+                                              email: username,
+                                              password: Password);
+
+                                      _model.textControllerPassword?.clear();
+                                      _model.textControllerConfirmPassword
+                                          ?.clear();
+                                    } on FirebaseAuthException catch (e) {
+                                      print(e.message);
+                                    }
+                                  }
+
+                                  // await Navigator.push(
+                                  //   context,
+                                  //   PageTransition(
+                                  //     type: PageTransitionType.leftToRight,
+                                  //     duration: Duration(milliseconds: 300),
+                                  //     reverseDuration:
+                                  //         Duration(milliseconds: 300),
+                                  //     child: HomeWidget(),
+                                  //   ),
+                                  // );
                                 },
                                 text: 'Login',
                                 options: FFButtonOptions(

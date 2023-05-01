@@ -12,14 +12,14 @@ class ConfirmModel extends FlutterFlowModel {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
-  TextEditingController? textController1;
+  TextEditingController? textControllerDriverID;
   String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for TextField widget.
-  TextEditingController? textController2;
+  TextEditingController? textControllerPassword;
   late bool passwordVisibility1;
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for TextField widget.
-  TextEditingController? textController3;
+  TextEditingController? textControllerConfirmPassword;
   late bool passwordVisibility2;
   String? Function(BuildContext, String?)? textController3Validator;
 
@@ -31,9 +31,9 @@ class ConfirmModel extends FlutterFlowModel {
   }
 
   void dispose() {
-    textController1?.dispose();
-    textController2?.dispose();
-    textController3?.dispose();
+    textControllerDriverID?.dispose();
+    textControllerPassword?.dispose();
+    textControllerConfirmPassword?.dispose();
   }
 
   /// Additional helper methods are added here.
