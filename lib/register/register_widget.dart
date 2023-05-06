@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'logiin2_model.dart';
-export 'logiin2_model.dart';
+import 'register_model.dart';
+export 'register_model.dart';
 
 class Logiin2Widget extends StatefulWidget {
   const Logiin2Widget({Key? key}) : super(key: key);

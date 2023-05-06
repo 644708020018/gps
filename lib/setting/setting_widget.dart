@@ -1,3 +1,5 @@
+import 'package:user/register/register_widget.dart';
+
 import '/audit/audit_widget.dart';
 import '/ediit_profile/ediit_profile_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -6,7 +8,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/home/home_widget.dart';
-import '/logiin2/logiin2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

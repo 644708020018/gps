@@ -14,15 +14,24 @@ class LoginModel extends FlutterFlowModel {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
-  TextEditingController? textController;
+  TextEditingController? textEmailController;
+  TextEditingController? textPasswordController;
   String? Function(BuildContext, String?)? textControllerValidator;
+  late bool passwordVisibility;
+
+  // String? Function(BuildContext, String?)? textController2Validator;
+
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    passwordVisibility = false;
+
+  }
 
   void dispose() {
-    textController?.dispose();
+    textEmailController?.dispose();
+    textPasswordController?.dispose();
   }
 
   /// Additional helper methods are added here.

@@ -13,6 +13,11 @@ class ConfirmModel extends FlutterFlowModel {
   final formKey = GlobalKey<FormState>();
   // State field(s) for TextField widget.
   TextEditingController? textControllerDriverID;
+  TextEditingController? textEmailController;
+  String? Function(BuildContext, String?)? textControllerValidator;
+
+
+
   late bool VisibilityControllerDriverID;
 
   String? Function(BuildContext, String?)? textController1Validator;
