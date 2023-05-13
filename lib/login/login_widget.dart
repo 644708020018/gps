@@ -81,32 +81,32 @@ class _LoginWidgetState extends State<LoginWidget>
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     child: Container(
                                       width: 320.0,
                                       decoration: BoxDecoration(),
                                       child: Padding(
                                           padding:
-                                              EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 30.0, 0.0, 0.0),
                                           child: TextFormField(
                                             controller: textEmailController,
                                             autofocus: false,
                                             obscureText: false,
-                                            decoration: InputDecoration(
+                                            decoration: const InputDecoration(
                                               hintText: 'Email ...',
                                               enabledBorder:
                                                   UnderlineInputBorder(
@@ -115,7 +115,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    const BorderRadius.only(
+                                                     BorderRadius.only(
                                                   topLeft: Radius.circular(4.0),
                                                   topRight:
                                                       Radius.circular(4.0),
@@ -128,7 +128,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    const BorderRadius.only(
+                                                     BorderRadius.only(
                                                   topLeft: Radius.circular(4.0),
                                                   topRight:
                                                       Radius.circular(4.0),
@@ -140,7 +140,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    const BorderRadius.only(
+                                                     BorderRadius.only(
                                                   topLeft: Radius.circular(4.0),
                                                   topRight:
                                                       Radius.circular(4.0),
@@ -153,7 +153,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
-                                                    const BorderRadius.only(
+                                                     BorderRadius.only(
                                                   topLeft: Radius.circular(4.0),
                                                   topRight:
                                                       Radius.circular(4.0),
@@ -171,60 +171,60 @@ class _LoginWidgetState extends State<LoginWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         24.0, 0.0, 24.0, 0.0),
                                     child: Container(
                                       width: 320.0,
-                                      decoration: BoxDecoration(),
+                                      decoration: const BoxDecoration(),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                        padding: const EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 0.0),
                                         child: TextFormField(
                                           controller: textPasswordController,
                                           autofocus: false,
-                                          decoration: InputDecoration(
+                                          decoration:  InputDecoration(
                                             hintText: 'Password',
-                                            enabledBorder: UnderlineInputBorder(
+                                            enabledBorder: const UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                                   BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
                                             ),
-                                            focusedBorder: UnderlineInputBorder(
+                                            focusedBorder: const UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                                   BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
                                             ),
-                                            errorBorder: UnderlineInputBorder(
+                                            errorBorder: const UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                                   BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
                                             ),
                                             focusedErrorBorder:
-                                                UnderlineInputBorder(
+                                            const UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                                   BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -265,7 +265,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 10.0, 0.0, 0.0),
                                     child: Container(
                                       width: 320.0,
@@ -273,7 +273,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 40.0, 0.0, 0.0),
                                     child: SizedBox(
                                       height: 45,
@@ -294,7 +294,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                             ),
                                           ),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Login",
                                           style: TextStyle(fontSize: 18),
                                         ),
@@ -327,7 +327,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
                                         0.0, 20.0, 0.0, 0.0),
                                     child: SizedBox(
                                       height: 45,
@@ -348,7 +348,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                             ),
                                           ),
                                         ),
-                                        child: Text(
+                                        child: const Text(
                                           "Register",
                                           style: TextStyle(fontSize: 18),
                                         ),
@@ -379,7 +379,7 @@ class _LoginWidgetState extends State<LoginWidget>
         }
         return Scaffold(
           body: Center(
-            child: CircularProgressIndicator(),
+            child:  CircularProgressIndicator(),
           ),
         );
       },

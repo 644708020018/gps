@@ -1,6 +1,11 @@
-import 'package:gps_project/register/register_widget.dart';
+import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gps_project/register/register_widget.dart';
+
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -9,14 +14,73 @@ class HomeWidget extends StatefulWidget {
   _HomeWidgetState createState() => _HomeWidgetState();
 }
 
+class Local {
+  late double lat = 0;
+  late double lng = 0;
+
+  Local({required this.lat, required this.lng});
+
+  Map toJson() {
+    return {'lat': lat, 'long': lng};
+  }
+}
+
 class _HomeWidgetState extends State<HomeWidget> {
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+  Completer<GoogleMapController> _controller = Completer();
 
   @override
   void initState() {
+    Future.delayed(Duration(milliseconds: 5000), () async {
+      Local res =  await getLocation();
+      setState(() {
+        lat = res.lat;
+        lng = res.lng;
+      });
+    });
+
+
+    // setCustomMarkerIcon();
     super.initState();
+  }
+
+  // BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
+  //
+  // void setCustomMarkerIcon() {
+  //   BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, "assets/mo.png")
+  //       .then(
+  //     (icon) {
+  //       sourceIcon = icon;
+  //     },
+  //   );
+  // }
+
+  late double lat = 0;
+  late double lng = 0;
+
+  Future<Local> getLocation() async {
+    String url =
+        "https://dint-cms.maholan.net/items/tracking?limit=1&fields[]=date_created&fields[]=id&fields[]=lat&fields[]=long&fields[]=gyro_ax&fields[]=gyro_ay&fields[]=gyro_az&sort=-id";
+    final response = await http.get(
+      Uri.parse('${url}'),
+      headers: <String, String>{
+        'Authorization': 'Bearer Klxa0fwefguMf4D4jZxxweip7khN-p9M',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final res = jsonDecode(response.body);
+
+      Local local = Local(
+        lat: res['data'][0]['lat'],
+        lng: res['data'][0]['long'],
+      );
+
+      return local;
+    } else {
+      throw Exception(
+          'Send APIName : getLocation || statusCode : ${response.statusCode.toString()} || Msg : ${jsonDecode(response.body)}');
+    }
   }
 
   @override
@@ -33,7 +97,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         appBar: AppBar(
           backgroundColor: Color(0xFF2085E3),
           automaticallyImplyLeading: false,
-          title: Text(
+          title: const Text(
             'Motorcycle GPS Tracker',
             textAlign: TextAlign.center,
           ),
@@ -50,27 +114,29 @@ class _HomeWidgetState extends State<HomeWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                     width: 385.0,
-                    height: 300.0,
-                    // child: FlutterFlowGoogleMap(
-                    //   controller: _model.googleMapsController,
-                    //   onCameraIdle: (latLng) =>
-                    //       _model.googleMapsCenter = latLng,
-                    //   initialLocation: _model.googleMapsCenter ??=
-                    //       LatLng(13.812743, 100.409127),
-                    //   markerColor: GoogleMarkerColor.green,
-                    //   mapType: MapType.hybrid,
-                    //   style: GoogleMapStyle.standard,
-                    //   initialZoom: 14.0,
-                    //   allowInteraction: true,
-                    //   allowZoom: true,
-                    //   showZoomControls: true,
-                    //   showLocation: true,
-                    //   showCompass: true,
-                    //   showMapToolbar: true,
-                    //   showTraffic: true,
-                    //   centerMapOnMarkerTap: true,
-                    // ),
+                    height: 380.0,
+                    child: GoogleMap(
+                      markers: {
+                        Marker(
+                          markerId: const MarkerId("source"),
+                          position: LatLng(lat, lng),
+                          // icon: sourceIcon,
+                        ),
+                      },
+                      myLocationEnabled: true,
+                      mapType: MapType.normal,
+                      initialCameraPosition: CameraPosition(
+                        target: LatLng(lat, lng),
+                        zoom: 16,
+                        // tilt: 59.440717697143555,
+                        // bearing: 192.8334901395799,
+                      ),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller.complete(controller);
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -88,10 +154,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                           child: Container(
                             width: 150.0,
                             height: 200.0,
-                            decoration: BoxDecoration(
-                            ),
+                            decoration: BoxDecoration(),
                             child: Image.asset(
-                              'assets/images/png-clipart-car-motorcycle-cartoon-hand-painted-ride-motorcycle-front-man-watercolor-painting-cartoon-character-removebg-preview.png',
+                              'assets/images/mo.png',
                               width: 100.0,
                               height: 100.0,
                               fit: BoxFit.cover,
@@ -113,8 +178,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               Container(
                                 width: 40.0,
                                 height: 40.0,
-                                decoration: BoxDecoration(
-                                ),
+                                decoration: BoxDecoration(),
                                 child: Image.network(
                                   'https://cdn.pixabay.com/photo/2016/02/23/15/52/green-1217966_1280.png',
                                   width: 10.0,
@@ -133,8 +197,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 child: Container(
                                   width: 35.0,
                                   height: 35.0,
-                                  decoration: BoxDecoration(
-                                  ),
+                                  decoration: BoxDecoration(),
                                   child: Image.network(
                                     'https://e1.pngegg.com/pngimages/609/567/png-clipart-conception-de-cercle-bouton-web-animation-forme-orange-jaune-ovale.png',
                                     width: 100.0,
@@ -151,8 +214,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               Container(
                                 width: 35.0,
                                 height: 35.0,
-                                decoration: BoxDecoration(
-                                ),
+                                decoration: BoxDecoration(),
                                 child: Image.network(
                                   'https://cdn.pixabay.com/photo/2012/05/07/02/46/red-47690_1280.png',
                                   width: 100.0,
@@ -353,7 +415,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           width: 90.0,
                           height: 90.0,
-
                           child: IconButton(
                             icon: Icon(
                               Icons.home_work_outlined,
@@ -377,8 +438,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           width: 90.0,
                           height: 90.0,
-                          decoration: BoxDecoration(
-                          ),
+                          decoration: BoxDecoration(),
                           child: IconButton(
                             icon: Icon(
                               Icons.settings_rounded,
@@ -402,8 +462,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           width: 90.0,
                           height: 90.0,
-                          decoration: BoxDecoration(
-                          ),
+                          decoration: BoxDecoration(),
                           child: Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
                             child: IconButton(

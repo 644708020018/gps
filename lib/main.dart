@@ -1,3 +1,4 @@
+import 'package:gps_project/home/home_widget.dart';
 import 'package:gps_project/login/login_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LoginWidget(),
+      // home: const LoginWidget(),
+      home: const HomeWidget(),
     );
   }
 }
