@@ -1,16 +1,6 @@
-import 'package:user/register/register_widget.dart';
+import 'package:gps_project/register/register_widget.dart';
 
-import '/audit/audit_widget.dart';
-import '/flutter_flow/flutter_flow_google_map.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/setting/setting_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'home_model.dart';
-export 'home_model.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key? key}) : super(key: key);
@@ -20,44 +10,32 @@ class HomeWidget extends StatefulWidget {
 }
 
 class _HomeWidgetState extends State<HomeWidget> {
-  late HomeModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  final _unfocusNode = FocusNode();
+
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomeModel());
   }
 
   @override
   void dispose() {
-    _model.dispose();
-
-    _unfocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
       child: Scaffold(
         key: scaffoldKey,
         resizeToAvoidBottomInset: false,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Color(0xFF2085E3),
           automaticallyImplyLeading: false,
           title: Text(
             'Motorcycle GPS Tracker',
             textAlign: TextAlign.center,
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Poppins',
-                  color: Colors.white,
-                  fontSize: 22.0,
-                ),
           ),
           actions: [],
           centerTitle: true,
@@ -74,28 +52,25 @@ class _HomeWidgetState extends State<HomeWidget> {
                   Container(
                     width: 385.0,
                     height: 300.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: FlutterFlowGoogleMap(
-                      controller: _model.googleMapsController,
-                      onCameraIdle: (latLng) =>
-                          _model.googleMapsCenter = latLng,
-                      initialLocation: _model.googleMapsCenter ??=
-                          LatLng(13.812743, 100.409127),
-                      markerColor: GoogleMarkerColor.green,
-                      mapType: MapType.hybrid,
-                      style: GoogleMapStyle.standard,
-                      initialZoom: 14.0,
-                      allowInteraction: true,
-                      allowZoom: true,
-                      showZoomControls: true,
-                      showLocation: true,
-                      showCompass: true,
-                      showMapToolbar: true,
-                      showTraffic: true,
-                      centerMapOnMarkerTap: true,
-                    ),
+                    // child: FlutterFlowGoogleMap(
+                    //   controller: _model.googleMapsController,
+                    //   onCameraIdle: (latLng) =>
+                    //       _model.googleMapsCenter = latLng,
+                    //   initialLocation: _model.googleMapsCenter ??=
+                    //       LatLng(13.812743, 100.409127),
+                    //   markerColor: GoogleMarkerColor.green,
+                    //   mapType: MapType.hybrid,
+                    //   style: GoogleMapStyle.standard,
+                    //   initialZoom: 14.0,
+                    //   allowInteraction: true,
+                    //   allowZoom: true,
+                    //   showZoomControls: true,
+                    //   showLocation: true,
+                    //   showCompass: true,
+                    //   showMapToolbar: true,
+                    //   showTraffic: true,
+                    //   centerMapOnMarkerTap: true,
+                    // ),
                   ),
                 ],
               ),
@@ -114,8 +89,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                             width: 150.0,
                             height: 200.0,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
                             ),
                             child: Image.asset(
                               'assets/images/png-clipart-car-motorcycle-cartoon-hand-painted-ride-motorcycle-front-man-watercolor-painting-cartoon-character-removebg-preview.png',
@@ -141,8 +114,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 width: 40.0,
                                 height: 40.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
                                 ),
                                 child: Image.network(
                                   'https://cdn.pixabay.com/photo/2016/02/23/15/52/green-1217966_1280.png',
@@ -163,8 +134,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   width: 35.0,
                                   height: 35.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
                                   ),
                                   child: Image.network(
                                     'https://e1.pngegg.com/pngimages/609/567/png-clipart-conception-de-cercle-bouton-web-animation-forme-orange-jaune-ovale.png',
@@ -183,8 +152,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 width: 35.0,
                                 height: 35.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
                                 ),
                                 child: Image.network(
                                   'https://cdn.pixabay.com/photo/2012/05/07/02/46/red-47690_1280.png',
@@ -213,13 +180,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Text(
                                   'สถานะการขับขี่',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w800,
-                                      ),
+                                  // style: FlutterFlowTheme.of(context)
+                                  //     .bodyMedium
+                                  //     .override(
+                                  //       fontFamily: 'Poppins',
+                                  //       fontSize: 20.0,
+                                  //       fontWeight: FontWeight.w800,
+                                  //     ),
                                 ),
                               ),
                             ],
@@ -232,13 +199,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     0.0, 0.0, 0.0, 15.0),
                                 child: Text(
                                   'รถวิ่ง',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                  // style: FlutterFlowTheme.of(context)
+                                  //     .bodyMedium
+                                  //     .override(
+                                  //       fontFamily: 'Poppins',
+                                  //       fontSize: 20.0,
+                                  //       fontWeight: FontWeight.normal,
+                                  //     ),
                                 ),
                               ),
                             ],
@@ -251,13 +218,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     0.0, 0.0, 0.0, 18.0),
                                 child: Text(
                                   'รถหยุด',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Poppins',
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                  // style: FlutterFlowTheme.of(context)
+                                  //     .bodyMedium
+                                  //     .override(
+                                  //       fontFamily: 'Poppins',
+                                  //       fontSize: 20.0,
+                                  //       fontWeight: FontWeight.normal,
+                                  //     ),
                                 ),
                               ),
                             ],
@@ -267,13 +234,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                             children: [
                               Text(
                                 'เกิดอุบัติเหตุ',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 20.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                                // style: FlutterFlowTheme.of(context)
+                                //     .bodyMedium
+                                //     .override(
+                                //       fontFamily: 'Poppins',
+                                //       fontSize: 20.0,
+                                //       fontWeight: FontWeight.normal,
+                                //     ),
                               ),
                             ],
                           ),
@@ -291,10 +258,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                   children: [
                     Text(
                       'บันทึกการขับขี่',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 25.0,
-                          ),
+                      // style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      //       fontFamily: 'Poppins',
+                      //       fontSize: 25.0,
+                      //     ),
                     ),
                   ],
                 ),
@@ -309,10 +276,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: Text(
                         'ระยะเวลาเดินทาง  / วัน         xx     ชั่วโมง',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Poppins',
-                              fontSize: 18.0,
-                            ),
+                        // style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        //       fontFamily: 'Poppins',
+                        //       fontSize: 18.0,
+                        //     ),
                       ),
                     ),
                   ],
@@ -326,10 +293,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         EdgeInsetsDirectional.fromSTEB(30.0, 5.0, 0.0, 0.0),
                     child: Text(
                       'ระยะการเดินทาง  / วัน           xx    กิโลเมตร',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 18.0,
-                          ),
+                      // style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      //       fontFamily: 'Poppins',
+                      //       fontSize: 18.0,
+                      //     ),
                     ),
                   ),
                 ],
@@ -342,10 +309,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                         EdgeInsetsDirectional.fromSTEB(30.0, 5.0, 0.0, 0.0),
                     child: Text(
                       'เกิดอุบติเหตุ                            xx     ครั้ง',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Poppins',
-                            fontSize: 18.0,
-                          ),
+                      // style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      //       fontFamily: 'Poppins',
+                      //       fontSize: 18.0,
+                      //     ),
                     ),
                   ),
                 ],
@@ -363,18 +330,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           width: 90.0,
                           height: 90.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 1.0,
-                            buttonSize: 90.0,
+                          child: IconButton(
                             icon: Icon(
                               Icons.home_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
                               size: 70.0,
                             ),
                             onPressed: () async {
@@ -395,27 +353,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           width: 90.0,
                           height: 90.0,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 1.0,
-                            buttonSize: 90.0,
+
+                          child: IconButton(
                             icon: Icon(
                               Icons.home_work_outlined,
-                              color: FlutterFlowTheme.of(context).primaryText,
                               size: 70.0,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AuditWidget(),
-                                ),
-                              );
+                              // await Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => AuditWidget(),
+                              //   ),
+                              // );
                             },
                           ),
                         ),
@@ -428,26 +378,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                           width: 90.0,
                           height: 90.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
                           ),
-                          child: FlutterFlowIconButton(
-                            borderColor: Colors.transparent,
-                            borderRadius: 30.0,
-                            borderWidth: 1.0,
-                            buttonSize: 90.0,
+                          child: IconButton(
                             icon: Icon(
                               Icons.settings_rounded,
-                              color: FlutterFlowTheme.of(context).primaryText,
                               size: 70.0,
                             ),
                             onPressed: () async {
-                              await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SettingWidget(),
-                                ),
-                              );
+                              // await Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => SettingWidget(),
+                              //   ),
+                              // );
                             },
                           ),
                         ),
@@ -460,26 +403,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                           width: 90.0,
                           height: 90.0,
                           decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
                           ),
                           child: Align(
                             alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 30.0,
-                              borderWidth: 1.0,
-                              buttonSize: 90.0,
+                            child: IconButton(
                               icon: Icon(
                                 Icons.logout,
-                                color: FlutterFlowTheme.of(context).primaryText,
                                 size: 70.0,
                               ),
                               onPressed: () async {
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Logiin2Widget(),
+                                    builder: (context) => RegisterPage(),
                                   ),
                                 );
                               },
