@@ -391,7 +391,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ConfirmWidget(),
+                                                      RegisterPage(),
                                                 ),
                                               );
                                             },

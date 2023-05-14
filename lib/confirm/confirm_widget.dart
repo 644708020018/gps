@@ -2,16 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class ConfirmWidget extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   // String email;
 
-  ConfirmWidget({Key? key}) : super(key: key);
+  RegisterPage({Key? key}) : super(key: key);
 
   @override
-  _ConfirmWidgetState createState() => _ConfirmWidgetState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _ConfirmWidgetState extends State<ConfirmWidget> {
+class _RegisterPageState extends State<RegisterPage> {
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
