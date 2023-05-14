@@ -354,7 +354,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                                 Fluttertoast.showToast(
                                                   msg: e.message.toString(),
                                                   gravity: ToastGravity.TOP,
-                                                  backgroundColor: Colors.red,
+                                                  //backgroundColor: Colors.red,
                                                 );
                                               }
                                             },

@@ -17,13 +17,14 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  Completer<GoogleMapController> _controller = Completer();
+  late Completer<GoogleMapController> _controller;
 
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 5000), () async {
       setCustomMarkerIcon();
       _getLocation();
+      // loopLocation();
     });
 
     super.initState();
@@ -39,6 +40,11 @@ class _HomeWidgetState extends State<HomeWidget> {
         sourceIcon = icon;
       },
     );
+  }
+
+
+  void loopLocation() async {
+
   }
 
   static LatLng location = const LatLng(18.317669, 99.397742);
@@ -60,6 +66,14 @@ class _HomeWidgetState extends State<HomeWidget> {
     setState(() {
       isLoading = true;
     });
+
+
+
+
+    // Future.delayed(Duration(milliseconds: 1200), () async {
+    //   _getLocation();
+    // });
+
   }
 
   @override
@@ -100,6 +114,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                         width: 385.0,
                         height: 380.0,
                         child: GoogleMap(
+                          myLocationButtonEnabled: true,
+                          initialCameraPosition: CameraPosition(
+                            target: location,
+                            zoom: 14.5,
+                            // tilt: 59.440717697143555,
+                            // bearing: 192.8334901395799,
+                          ),
+                          myLocationEnabled: true,
+                          mapType: MapType.normal,
+                          onMapCreated: (GoogleMapController controller) {
+                            _controller.complete(controller);
+                          },
                           markers: {
                             Marker(
                               markerId: const MarkerId("source"),
@@ -107,17 +133,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                               icon: sourceIcon,
                             ),
                           },
-                          myLocationEnabled: true,
-                          mapType: MapType.normal,
-                          initialCameraPosition: CameraPosition(
-                            target: location,
-                            zoom: 14.5,
-                            // tilt: 59.440717697143555,
-                            // bearing: 192.8334901395799,
-                          ),
-                          onMapCreated: (GoogleMapController controller) {
-                            _controller.complete(controller);
+                          onCameraMoveStarted: () async {
+                            await getLocation().then((value) {
+                              if (value.list != []) {
+                                setState(() {
+                                  Future.forEach(value.list, (data) async {
+                                    setState(() {
+                                      location = LatLng(data.lat, data.long);
+                                    });
+                                  });
+                                });
+                              }
+                            });
                           },
+
                         ),
                       ),
                     ],

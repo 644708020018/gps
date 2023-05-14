@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gps_project/login/login_widget.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController textControllerConfirmPassword =
       TextEditingController();
 
-  late bool VisibilityControllerDriverID = false;
+  // late bool VisibilityControllerDriverID = false;
   late bool passwordVisibility1 = false;
   late bool passwordVisibility2 = false;
 
@@ -50,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
         if (snapshot.hasError) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Error'),
+              title: const Text('Error'),
             ),
             body: Center(
               child: Text("${snapshot.error}"),
@@ -62,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Scaffold(
               key: scaffoldKey,
               appBar: AppBar(
-                title: Text(
+                title: const Text(
                   'Motorcycle GPS Tracker',
                 ),
               ),
@@ -73,30 +74,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      // Padding(
-                      //   padding: EdgeInsetsDirectional.fromSTEB(
-                      //       0.0, 50.0, 0.0, 10.0),
-                      //   child: Text(
-                      //     'Motorcycle GPS Tracker',
-                      //     style:
-                      //         FlutterFlowTheme.of(context).bodyMedium.override(
-                      //               fontFamily: 'Poppins',
-                      //               color: Color(0xFF2B84DC),
-                      //               fontSize: 30.0,
-                      //             ),
-                      //   ),
-                      // ),
                       Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
                                 2.0, 20.0, 2.0, 0.0),
                             child: Container(
+                              padding: EdgeInsets.zero,
                               width: 380.0,
                               height: 350.0,
-                              decoration: BoxDecoration(),
                               child: Image.asset(
                                 'assets/images/2-1.jpg',
                                 fit: BoxFit.cover,
@@ -106,40 +94,45 @@ class _RegisterPageState extends State<RegisterPage> {
                         ],
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 10.0, 0.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 10.0, 0.0, 0.0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 24.0, 0.0),
                                     child: Container(
+                                      padding: EdgeInsets.zero,
                                       width: 320.0,
-                                      decoration: BoxDecoration(),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0.0, 10.0, 0.0, 0.0),
                                         child: TextFormField(
+                                          validator: EmailValidator(
+                                              errorText:
+                                                  "Email format is invalid."),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
                                           controller: textEmailController,
                                           autofocus: false,
                                           obscureText: false,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                             hintText: 'Email',
                                             enabledBorder: UnderlineInputBorder(
                                               borderSide: BorderSide(
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -149,8 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -160,8 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -172,8 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 color: Color(0x00000000),
                                                 width: 1.0,
                                               ),
-                                              borderRadius:
-                                                  const BorderRadius.only(
+                                              borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -193,22 +183,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 10.0, 24.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 10.0, 24.0, 0.0),
                                     child: Container(
+                                      padding: EdgeInsets.zero,
                                       width: 320.0,
-                                      decoration: BoxDecoration(),
                                       child: TextFormField(
                                         controller: textControllerDriverID,
-                                        decoration: InputDecoration(
+                                        decoration: const InputDecoration(
                                           hintText: 'DriverID',
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -218,8 +208,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -229,8 +218,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -241,8 +229,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -258,58 +245,60 @@ class _RegisterPageState extends State<RegisterPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 10.0, 24.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 10.0, 24.0, 0.0),
                                     child: Container(
+                                      padding: EdgeInsets.zero,
                                       width: 320.0,
-                                      decoration: BoxDecoration(),
                                       child: TextFormField(
                                         controller: textControllerPassword,
+                                        validator: RequiredValidator(
+                                            errorText: "Password is empty"),
                                         autofocus: false,
                                         obscureText: !passwordVisibility1,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
-                                          enabledBorder: UnderlineInputBorder(
+                                          enabledBorder:
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          focusedBorder: UnderlineInputBorder(
+                                          focusedBorder:
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          errorBorder: UnderlineInputBorder(
+                                          errorBorder:
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
                                           focusedErrorBorder:
-                                              UnderlineInputBorder(
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -327,7 +316,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
-                                              color: Color(0xFF757575),
+                                              color: const Color(0xFF757575),
                                               size: 22.0,
                                             ),
                                           ),
@@ -342,59 +331,62 @@ class _RegisterPageState extends State<RegisterPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 10.0, 0.0, 0.0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 0.0),
                                     child: Container(
+                                      padding: EdgeInsets.zero,
                                       width: 320.0,
-                                      decoration: BoxDecoration(),
                                       child: TextFormField(
+                                        validator: RequiredValidator(
+                                            errorText:
+                                                "Confirm Password is empty"),
                                         controller:
                                             textControllerConfirmPassword,
                                         autofocus: false,
                                         obscureText: !passwordVisibility2,
                                         decoration: InputDecoration(
                                           hintText: 'Confirm Password',
-                                          enabledBorder: UnderlineInputBorder(
+                                          enabledBorder:
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          focusedBorder: UnderlineInputBorder(
+                                          focusedBorder:
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
-                                          errorBorder: UnderlineInputBorder(
+                                          errorBorder:
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
                                           ),
                                           focusedErrorBorder:
-                                              UnderlineInputBorder(
+                                              const UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1.0,
                                             ),
-                                            borderRadius:
-                                                const BorderRadius.only(
+                                            borderRadius: BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -412,7 +404,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                   ? Icons.visibility_outlined
                                                   : Icons
                                                       .visibility_off_outlined,
-                                              color: Color(0xFF757575),
+                                              color: const Color(0xFF757575),
                                               size: 22.0,
                                             ),
                                           ),
@@ -427,50 +419,93 @@ class _RegisterPageState extends State<RegisterPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 40.0, 0.0, 0.0),
-                                    child: ElevatedButton(
-                                      child: Text("Register"),
-                                      onPressed: () async {
-                                        String username =
-                                            textEmailController.text.trim();
-                                        // String driverId = _model
-                                        //     .textControllerDriverID.text
-                                        //     .trim();
-                                        String Password =
-                                            textControllerPassword.text.trim();
-                                        String ConfirmPassword =
-                                            textControllerConfirmPassword.text
-                                                .trim();
-                                        if (Password == ConfirmPassword) {
-                                          try {
-                                            await FirebaseAuth.instance
-                                                .createUserWithEmailAndPassword(
-                                                    email: username,
-                                                    password: Password);
-
-                                            textControllerPassword?.clear();
-                                            textControllerConfirmPassword
-                                                ?.clear();
-
-                                            await Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                const LoginWidget(),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 40.0, 0.0, 0.0),
+                                    child: SizedBox(
+                                      height: 45,
+                                      width: 300,
+                                      child: ElevatedButton(
+                                        style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  Colors.blue),
+                                          shape: MaterialStateProperty.all(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              side: const BorderSide(
+                                                width: 1,
+                                                color: Colors.blue,
                                               ),
-                                            );
+                                            ),
+                                          ),
+                                        ),
+                                        child: const Text(
+                                          "Submit",
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                        onPressed: () async {
+                                          String username =
+                                              textEmailController.text.trim();
+                                          // String driverId = _model
+                                          //     .textControllerDriverID.text
+                                          //     .trim();
+                                          String password =
+                                              textControllerPassword.text
+                                                  .trim();
+                                          String confirmPassword =
+                                              textControllerConfirmPassword.text
+                                                  .trim();
 
-
-                                          } on FirebaseAuthException catch (e) {
+                                          if (textEmailController
+                                              .text.isEmpty) {
                                             Fluttertoast.showToast(
-                                              msg: e.message.toString(),
+                                              msg: "Email format is invalid.",
                                               gravity: ToastGravity.TOP,
-                                              backgroundColor: Colors.red,
+                                              //backgroundColor: Colors.red,
+                                            );
+                                          } else if (password ==
+                                              confirmPassword) {
+                                            try {
+                                              await FirebaseAuth.instance
+                                                  .createUserWithEmailAndPassword(
+                                                      email: username,
+                                                      password: password);
+
+                                              textControllerPassword?.clear();
+                                              textControllerConfirmPassword
+                                                  ?.clear();
+
+                                              // ignore: use_build_context_synchronously
+                                              Fluttertoast.showToast(
+                                                msg: "Successful registration",
+                                                gravity: ToastGravity.TOP,
+                                                //backgroundColor: Colors.red,
+                                              );
+                                              await Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const LoginWidget(),
+                                                ),
+                                              );
+                                            } on FirebaseAuthException catch (e) {
+                                              Fluttertoast.showToast(
+                                                msg: e.message.toString(),
+                                                gravity: ToastGravity.TOP,
+                                                //backgroundColor: Colors.red,
+                                              );
+                                            }
+                                          } else {
+                                            Fluttertoast.showToast(
+                                              msg: "Passwords do not match.",
+                                              gravity: ToastGravity.TOP,
+                                              //backgroundColor: Colors.red,
                                             );
                                           }
-                                        }
-                                      },
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -486,7 +521,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           );
         }
-        return Scaffold(
+        return const Scaffold(
           body: Center(
             child: CircularProgressIndicator(),
           ),
