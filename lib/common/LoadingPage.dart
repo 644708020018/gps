@@ -13,7 +13,7 @@ class _LoadingPageState extends State<LoadingPage> {
     return Scaffold(
       body: Center(
         child: CircularProgressIndicator(
-          color: Colors.black,
+          color: Colors.blue,
         ),
       )
     );
