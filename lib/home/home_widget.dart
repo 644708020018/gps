@@ -87,7 +87,7 @@ class _HomeWidgetState extends State<HomeWidget> {
               centerTitle: true,
               elevation: 2.0,
             ),
-            body: Container(
+            body: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [

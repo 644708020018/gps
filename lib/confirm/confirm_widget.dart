@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gps_project/login/login_widget.dart';
 
 class RegisterPage extends StatefulWidget {
   // String email;
@@ -450,8 +452,22 @@ class _RegisterPageState extends State<RegisterPage> {
                                             textControllerPassword?.clear();
                                             textControllerConfirmPassword
                                                 ?.clear();
+
+                                            await Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                const LoginWidget(),
+                                              ),
+                                            );
+
+
                                           } on FirebaseAuthException catch (e) {
-                                            print(e.message);
+                                            Fluttertoast.showToast(
+                                              msg: e.message.toString(),
+                                              gravity: ToastGravity.TOP,
+                                              backgroundColor: Colors.red,
+                                            );
                                           }
                                         }
                                       },
