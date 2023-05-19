@@ -13,9 +13,9 @@ class GetTrackingModel {
         id: json['id'],
         lat: json['lat'],
         long: json['long'],
-        gyro_ax: json['gyro_ax'] ?? "",
-        gyro_ay: json['gyro_ay'] ?? "",
-        gyro_az: json['gyro_az'] ?? "",
+        // gyro_ax: json['gyro_ax'] ?? 0.0,
+        // gyro_ay: json['gyro_ay'] ?? 0.0,
+        // gyro_az: json['gyro_az'] ?? 0.0,
       );
       list.add(arr);
     }
@@ -31,18 +31,18 @@ class GetTracking {
   final int id;
   final double lat;
   final double long;
-  final String gyro_ax;
-  final String gyro_ay;
-  final String gyro_az;
+  // final double gyro_ax;
+  // final double gyro_ay;
+  // final double gyro_az;
 
   GetTracking({
     required this.date_created,
     required this.id,
     required this.lat,
     required this.long,
-    required this.gyro_ax,
-    required this.gyro_ay,
-    required this.gyro_az,
+    // required this.gyro_ax,
+    // required this.gyro_ay,
+    // required this.gyro_az,
   });
 
   factory GetTracking.fromJson(Map<String, dynamic> json) {
@@ -51,9 +51,9 @@ class GetTracking {
       id: json['id'],
       lat: json['lat'],
       long: json['long'],
-      gyro_ax: json['gyro_ax'],
-      gyro_ay: json['gyro_ay'],
-      gyro_az: json['gyro_az'],
+      // gyro_ax: json['gyro_ax'],
+      // gyro_ay: json['gyro_ay'],
+      // gyro_az: json['gyro_az'],
     );
   }
 }
