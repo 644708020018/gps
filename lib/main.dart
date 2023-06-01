@@ -1,10 +1,13 @@
+import 'package:gps_project/common/background_service.dart';
 import 'package:gps_project/home/home_widget.dart';
+import 'package:gps_project/loggps/log_gps_widget.dart';
 import 'package:gps_project/login/login_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await initializeService();
 
   runApp(MyApp());
 }
@@ -22,9 +25,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const LoginWidget(),
-      // home: const HomeWidget(),
+    return const MaterialApp(
+      // home: const LoginWidget(),
+      home: LogGPSWidget(),
     );
   }
 }
