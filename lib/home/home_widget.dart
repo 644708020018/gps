@@ -327,7 +327,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
                     child: Row(
@@ -343,7 +342,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child:  Text(
-                            showKm,
+                            showKm == '' ? '0' : showKm,
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
@@ -372,7 +371,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         Container(
                           padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                           child: Text(
-                            '$showHour ชั่วโมง $showMinute นาที',
+                            showHour != '' ? '$showHour ชั่วโมง $showMinute นาที' : "0 ชั่วโมง 0 นาที",
                             style: TextStyle(fontSize: 18),
                           ),
                         ),
