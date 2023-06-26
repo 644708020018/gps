@@ -10,16 +10,16 @@ class GetTrackingModel {
     for (dynamic json in json['data']) {
       double lat = 0.0;
       double long = 0.0;
-      if (json['lat'].toString().length > 1) {
-        lat = json['lat'];
+      if (json['lat'].toString().length > 1 && json['lat'] != null) {
+        lat = json['lat'] ?? 0.0;
       } else {
-        lat += json['lat'];
+        lat += json['lat'] ?? 0.0;
       }
 
-      if (json['lat'].toString().length > 1) {
-        long = json['long'];
+      if (json['lat'].toString().length > 1 && json['long'] != null) {
+        long = json['long'] ?? 0.0;
       } else {
-        long += json['long'];
+        long += json['long'] ?? 0.0;
       }
 
       GetTracking arr = GetTracking(
