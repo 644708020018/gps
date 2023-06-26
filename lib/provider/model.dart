@@ -40,8 +40,8 @@ class GetTrackingModel {
 class GetTracking {
   final String date_created;
   final int id;
-  final double lat;
-  final double long;
+  late final double lat;
+  late final double long;
 
   GetTracking({
     required this.date_created,

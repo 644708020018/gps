@@ -181,6 +181,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   setState(() {
                                     Future.forEach(value.list, (data) async {
                                       setState(() {
+                                        if (data.lat == 0.0){
+                                          data.lat  = 18.317669;
+                                        }
+                                        if (data.long == 0.0){
+                                          data.long = 99.397742;
+                                        }
                                         location = LatLng(data.lat, data.long);
                                       });
                                     });
